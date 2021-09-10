@@ -16,6 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 // The homepage route of our application does not interface with the MovieAnalyst API and is always accessible. We won’t use the getAccessToken middleware here. We’ll simply render the index.ejs view.
 app.get('/', function(req, res){
+  console.log(backendHost);
   res.render('index');
 })
 
@@ -25,6 +26,7 @@ app.get('/movies', function(req, res){
   request
     .get('http://'+backendHost+':3000/movies')
     .end(function(err, data) {
+      console.log(backendHost);
       if(data.status == 403){
         res.send(403, '403 Forbidden');
       } else {
@@ -41,6 +43,7 @@ app.get('/authors', function(req, res){
     .get('http://'+backendHost+':3000/reviewers')
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
+      console.log(backendHost);
       if(data.status == 403){
         res.send(403, '403 Forbidden');
       } else {
@@ -54,6 +57,7 @@ app.get('/publications', function(req, res){
   request
     .get('http://'+backendHost+':3000/publications')
     .end(function(err, data) {
+      console.log(backendHost);
       if(data.status == 403){
         res.send(403, '403 Forbidden');
       } else {
@@ -68,6 +72,7 @@ app.get('/pending', function(req, res){
   request
     .get('http://'+backendHost+':3000/pending')
     .end(function(err, data) {
+      console.log(backendHost);
       if(data.status == 403){
         res.send(403, '403 Forbidden');
       }
